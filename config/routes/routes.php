@@ -1,15 +1,14 @@
 <?php
 
-use App\Router\Route;
+use App\Kernel\Router\Route;
 
 return [
-	Route::get('/home', function (){
-		include_once VIEWS . '/pages/home.php';
+	Route::get('/', [\App\Controllers\HomeController::class, 'index']),
+	Route::get('/movies', [\App\Controllers\MoviesController::class, 'index']),
+
+
+
+	Route::get('/test', function () {
+		echo 'hello bro';
 	}),
-	Route::get('/movies', function () {
-		include_once VIEWS . '/pages/movies.php';
-	}),
-	Route::post('/test', function () {
-		include_once VIEWS . '/pages/movies.php';
-	})
 ];

@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Router;
-
-use JetBrains\PhpStorm\NoReturn;
+namespace App\Kernel\Router;
 
 class Router
 {
@@ -24,6 +22,7 @@ class Router
 		foreach ($routes as $route) {
 			$this->routes[$route->getMethod()][$route->getUri()] = $route;
 		}
+
 	}
 
 	public function dispatch(string $uri, string $method): void
@@ -33,18 +32,16 @@ class Router
 
 		if(is_null($route)) $this->notFound();
 
-		$route->getAction()();
-
-
-		$routes = $this->getRoutes();
-
+		if(is_array($route->getAction())) {
+			[$controller, $action] = $route->getAction();
+			$controller = new $controller;
+			call_user_func([$controller, $action]);
+		} else {
+			call_user_func($route->getAction());
+		}
 	}
 
-
-	/**
-	 * @return Route[]
-	 */
-	private function getRoutes()
+	private function getRoutes(): array|bool
 	{
 		return include_once ROUTES;
 	}
@@ -58,7 +55,7 @@ class Router
 
 	private function notFound()
 	{
-		return exit("<h1><strong>404</strong> Page not Found!</h1> <a href='/home'>Вернуться назад</a>");
+		return exit("<h1><strong>404</strong> Page not Found!</h1> <a href='/'>go back</a>");
 	}
 
 }

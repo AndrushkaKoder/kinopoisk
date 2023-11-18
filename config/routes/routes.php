@@ -3,12 +3,11 @@
 use App\Kernel\Router\Route;
 
 return [
-	Route::get('/', [\App\Controllers\HomeController::class, 'index']),
-	Route::get('/movies', [\App\Controllers\MoviesController::class, 'index']),
+	//frontend
+	Route::get('/', [\App\Controllers\Frontend\HomeController::class, 'index']),
+	Route::get('/movies', [\App\Controllers\Frontend\MoviesController::class, 'index']),
 
-
-
-	Route::get('/test', function () {
-		echo 'hello bro';
-	}),
+	//admin
+	Route::get('/admin/movies/create', [\App\Controllers\Admin\MoviesController::class, 'add']),
+	Route::post('/admin/movies/create', [\App\Controllers\Admin\MoviesController::class, 'create'])
 ];

@@ -2,7 +2,9 @@
 
 namespace App\Kernel\Validator;
 
-class Validator
+use App\Kernel\Validator\interface\ValidatorInterface;
+
+class Validator implements ValidatorInterface
 {
 	private array $errors;
 	private array $data;

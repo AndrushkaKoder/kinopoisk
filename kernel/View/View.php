@@ -3,12 +3,11 @@
 namespace App\Kernel\View;
 
 use App\Kernel\Exceptions\ViewNotFoundException;
-use App\Kernel\Session\Session;
-
-class View
+use App\Kernel\Session\interface\SessionInterface;
+class View implements ViewInterface
 {
 
-	public function __construct(private Session $session)
+	public function __construct(private SessionInterface $session)
 	{
 	}
 

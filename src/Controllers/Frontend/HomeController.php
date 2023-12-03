@@ -6,7 +6,7 @@ use App\Kernel\Controller\BaseController;
 
 class HomeController extends BaseController
 {
-	public function index()
+	public function index(): void
 	{
 		$this->view('frontend.home');
 	}

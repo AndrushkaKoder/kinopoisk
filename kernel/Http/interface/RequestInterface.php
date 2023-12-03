@@ -12,7 +12,7 @@ interface RequestInterface
 
 	public function method(): string;
 
-	public function input($value): ?string;
+	public function input($value);
 
 	public function setValidator(Validator $validator): void;
 

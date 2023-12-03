@@ -2,6 +2,12 @@
 
 namespace App\Kernel\Container;
 
+use App\Kernel\Auth\Auth;
+use App\Kernel\Auth\interface\AuthInterface;
+use App\Kernel\config\Config;
+use App\Kernel\config\interface\ConfigInterface;
+use App\Kernel\Database\Database;
+use App\Kernel\Database\interface\DatabaseInterface;
 use App\Kernel\Http\interface\RedirectInterface;
 use App\Kernel\Http\interface\RequestInterface;
 use App\Kernel\Http\Redirect;
@@ -23,6 +29,9 @@ class Container
 	public ValidatorInterface $validator;
 	public RedirectInterface $redirect;
 	public SessionInterface $session;
+	public ConfigInterface $config;
+	public DatabaseInterface $database;
+	public AuthInterface $auth;
 
 	public function __construct()
 	{
@@ -37,7 +46,17 @@ class Container
 		$this->redirect = new Redirect();
 		$this->request->setValidator($this->validator);
 		$this->view = new View($this->session);
-		$this->router = new Router($this->view, $this->request, $this->redirect, $this->session);
+		$this->config = new Config();
+		$this->database = new Database($this->config);
+		$this->auth = new Auth($this->database, $this->session, $this->config);
 
+		$this->router = new Router(
+			$this->view,
+			$this->request,
+			$this->redirect,
+			$this->session,
+			$this->database,
+			$this->auth,
+		);
 	}
 }

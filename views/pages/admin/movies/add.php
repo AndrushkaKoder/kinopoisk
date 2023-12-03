@@ -6,11 +6,12 @@
 	<div class="errors">
 		<ul>
 			<?php foreach ($session->getFlash('title') as $error) { ?>
-			<li style="color: red"><?=$error?></li>
+				<li style="color: red"><?=$error?></li>
 			<?php } ?>
 		</ul>
 	</div>
 <?php } ?>
+
 
 <form action="/admin/movies/create" method="post">
 	<label for="title">Новый фильм</label>

@@ -27,5 +27,11 @@ class MoviesController extends BaseController
 			$this->redirect('/admin/movies/create');
 		}
 
+		$sql = $this->db()->insert('movies', [
+			'title' => $this->request()->input('title'),
+			'text' => $this->request()->input('title'),
+		]);
+
+
 	}
 }

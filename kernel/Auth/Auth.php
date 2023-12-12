@@ -8,7 +8,6 @@ use App\Kernel\Session\interface\SessionInterface;
 
 class Auth implements interface\AuthInterface
 {
-
 	public function __construct(
 		private DatabaseInterface $db,
 		private SessionInterface  $session,
@@ -45,7 +44,7 @@ class Auth implements interface\AuthInterface
 		return $this->session->has($this->sessionField());
 	}
 
-	public function user(): ?array
+	public function user(): ?User
 	{
 		if (!$this->check()) return null;
 
@@ -53,7 +52,11 @@ class Auth implements interface\AuthInterface
 			'id' => $this->session->get($this->sessionField())
 		]);
 
-		return !$user ? null : $user;
+		return !empty($user)
+			?
+			new User($user['id'], $user['user_email'], $user['user_name'], $user['user_password'])
+			:
+			null;
 	}
 
 	public function table(): string

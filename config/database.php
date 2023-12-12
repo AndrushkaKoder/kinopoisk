@@ -5,5 +5,5 @@ return [
 	'charset' => 'utf-8',
 	'database' => 'kinopoisk',
 	'user' => 'root',
-	'password' => 'root',
+	'password' => '',
 ];

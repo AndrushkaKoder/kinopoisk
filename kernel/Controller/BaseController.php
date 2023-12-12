@@ -2,7 +2,6 @@
 
 namespace App\Kernel\Controller;
 
-use App\Kernel\Auth\Auth;
 use App\Kernel\Auth\interface\AuthInterface;
 use App\Kernel\Database\interface\DatabaseInterface;
 use App\Kernel\Http\interface\RedirectInterface;

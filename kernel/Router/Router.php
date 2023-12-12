@@ -7,11 +7,7 @@ use App\Kernel\Database\interface\DatabaseInterface;
 use App\Kernel\Http\interface\RedirectInterface;
 use App\Kernel\Http\interface\RequestInterface;
 use App\Kernel\Router\interface\RouterInterface;
-use App\Kernel\Http\Redirect;
-use App\Kernel\Http\Request;
 use App\Kernel\Session\interface\SessionInterface;
-use App\Kernel\Session\Session;
-use App\Kernel\View\View;
 use App\Kernel\View\ViewInterface;
 
 class Router implements RouterInterface
@@ -41,12 +37,10 @@ class Router implements RouterInterface
 		foreach ($routes as $route) {
 			$this->routes[$route->getMethod()][$route->getUri()] = $route;
 		}
-
 	}
 
 	public function dispatch(string $uri, string $method): void
 	{
-
 		$route = $this->findRoute($uri, $method);
 
 		if (is_null($route)) $this->notFound();
@@ -82,7 +76,7 @@ class Router implements RouterInterface
 
 	private function notFound()
 	{
-		return exit("<h1><strong>404</strong> Page not Found!</h1> <a href='/'>go back</a>");
+		exit("<h1><strong>404</strong> Page not Found!</h1> <a href='/'>go back</a>");
 	}
 
 }

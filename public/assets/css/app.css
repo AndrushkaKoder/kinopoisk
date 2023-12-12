@@ -1,1 +1,28 @@
+* {
+	box-sizing: border-box;
+}
 
+h1,h2,h3,h4,h5,h6,p,a,span {
+	color: black;
+	font-family: 'Roboto', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+
+/*======================================================*/
+
+.header {
+
+}
+
+.header_nav {
+
+}
+
+.header_nav > li > a {
+	font-weight: bold;
+}

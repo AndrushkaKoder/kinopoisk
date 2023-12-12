@@ -1,3 +1,12 @@
 <?php $view->component('frontend.head') ?>
-<h1>home page!</h1>
+
+<div class="container">
+	<div class="row">
+		<div class="col-12 d-flex justify-content-center">
+			<h1>Домашняя страница</h1>
+		</div>
+	</div>
+
+</div>
+
 <?php $view->component('frontend.footer') ?>

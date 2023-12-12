@@ -14,4 +14,5 @@ return [
 	Route::post('/register', [\App\Controllers\Admin\RegisterController::class, 'register']),
 	Route::get('/login', [\App\Controllers\Admin\LoginController::class, 'index']),
 	Route::post('/login', [\App\Controllers\Admin\LoginController::class, 'login']),
+	Route::post('/logout', [\App\Controllers\Admin\LoginController::class, 'logout']),
 ];

@@ -1,3 +1,10 @@
 <?php $view->component('frontend.head') ?>
-	<h1>movies page!</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-12 d-flex justify-content-center">
+			<h1>Каталог фильмов</h1>
+		</div>
+	</div>
+
+</div>
 <?php $view->component('frontend.footer') ?>

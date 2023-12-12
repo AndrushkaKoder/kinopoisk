@@ -29,7 +29,7 @@ class Database implements DatabaseInterface
 
 		} catch (\PDOException $exception) {
 
-			die('Ошибка бд! ' . $exception->getMessage());
+			die('Ошибка подключения к Database! ' . $exception->getMessage());
 
 		}
 	}
@@ -48,7 +48,6 @@ class Database implements DatabaseInterface
 		$sql = $this->pdo->prepare($query);
 
 		$sql->execute($data);
-
 
 		return $this->pdo->lastInsertId();
 	}

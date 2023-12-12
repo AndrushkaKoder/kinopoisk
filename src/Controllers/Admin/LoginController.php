@@ -3,10 +3,12 @@
 namespace App\Controllers\Admin;
 
 use App\Kernel\Controller\BaseController;
+use App\Kernel\Http\interface\RedirectInterface;
+use App\Kernel\Http\Redirect;
 
 class LoginController extends BaseController
 {
-	public function index()
+	public function index(): void
 	{
 		$this->view('admin.login.login');
 	}
@@ -19,13 +21,19 @@ class LoginController extends BaseController
 		]);
 
 		if (!$validation) {
-				$this->session()->set('error', ['Ошибка входа']);
+			$this->session()->set('error', ['Ошибка входа']);
 			$this->redirect('/login');
 		}
 
 		$email = $this->request()->input('user_email');
 		$password = $this->request()->input('user_password');
 
-		dd($this->auth()->attempt($email, $password), $_SESSION);
+		if($this->auth()->attempt($email, $password)) $this->redirect('/');
+	}
+
+	public function logout(): void
+	{
+		$this->auth()->logout();
+		$this->redirect('/login');
 	}
 }

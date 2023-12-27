@@ -2,6 +2,7 @@
 
 namespace App\Kernel\Http\interface;
 
+use App\Kernel\File\interface\FileInterface;
 use App\Kernel\Validator\Validator;
 
 interface RequestInterface
@@ -19,4 +20,8 @@ interface RequestInterface
 	public function validate(array $rules): bool;
 
 	public function errors(): array;
+
+	public function file(string $key): ?FileInterface;
+
+	public function all(): array;
 }

@@ -8,5 +8,4 @@
 	</div>
 
 </div>
-
 <?php $view->component('frontend.footer') ?>

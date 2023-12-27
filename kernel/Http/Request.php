@@ -2,6 +2,8 @@
 
 namespace App\Kernel\Http;
 
+use App\Kernel\File\File;
+use App\Kernel\File\interface\FileInterface;
 use App\Kernel\Http\interface\RequestInterface;
 use App\Kernel\Validator\interface\ValidatorInterface;
 use App\Kernel\Validator\Validator;
@@ -61,6 +63,23 @@ class Request implements RequestInterface
 	public function errors(): array
 	{
 		return $this->validator->getErrors();
+	}
+
+	public function file(string $key): ?FileInterface
+	{
+		if (!isset($this->files[$key])) return null;
+		return new File(
+			$this->files[$key]['name'],
+			$this->files[$key]['type'],
+			$this->files[$key]['tmp_name'],
+			$this->files[$key]['error'],
+			$this->files[$key]['size']
+		);
+	}
+
+	public function all(): array
+	{
+		return array_merge($this->get, $this->post, $this->files);
 	}
 
 }

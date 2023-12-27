@@ -7,6 +7,7 @@ use App\Kernel\Database\interface\DatabaseInterface;
 use App\Kernel\Http\interface\RedirectInterface;
 use App\Kernel\Http\interface\RequestInterface;
 use App\Kernel\Session\interface\SessionInterface;
+use App\Kernel\Storage\StorageInterface;
 use App\Kernel\View\View;
 use App\Kernel\View\ViewInterface;
 
@@ -18,6 +19,7 @@ abstract class BaseController
 	private SessionInterface $session;
 	private DatabaseInterface $database;
 	private AuthInterface $auth;
+	private StorageInterface $storage;
 
 	public function setView(View $view): void
 	{
@@ -78,6 +80,18 @@ abstract class BaseController
 	{
 		$this->auth = $auth;
 	}
+
+	public function setStorage(StorageInterface $storage): void
+	{
+		$this->storage = $storage;
+	}
+
+	public function storage(): StorageInterface
+	{
+		return $this->storage;
+	}
+
+
 
 
 

@@ -8,6 +8,8 @@ use App\Kernel\config\Config;
 use App\Kernel\config\interface\ConfigInterface;
 use App\Kernel\Database\Database;
 use App\Kernel\Database\interface\DatabaseInterface;
+use App\Kernel\File\File;
+use App\Kernel\File\interface\FileInterface;
 use App\Kernel\Http\interface\RedirectInterface;
 use App\Kernel\Http\interface\RequestInterface;
 use App\Kernel\Http\Redirect;
@@ -16,6 +18,8 @@ use App\Kernel\Router\interface\RouterInterface;
 use App\Kernel\Router\Router;
 use App\Kernel\Session\interface\SessionInterface;
 use App\Kernel\Session\Session;
+use App\Kernel\Storage\Storage;
+use App\Kernel\Storage\StorageInterface;
 use App\Kernel\Validator\interface\ValidatorInterface;
 use App\Kernel\Validator\Validator;
 use App\Kernel\View\View;
@@ -32,6 +36,8 @@ class Container
 	public ConfigInterface $config;
 	public DatabaseInterface $database;
 	public AuthInterface $auth;
+	public FileInterface $file;
+	public StorageInterface $storage;
 
 	public function __construct()
 	{
@@ -49,6 +55,7 @@ class Container
 		$this->database = new Database($this->config);
 		$this->auth = new Auth($this->database, $this->session, $this->config);
 		$this->view = new View($this->session, $this->auth);
+		$this->storage = new Storage($this->config);
 
 		$this->router = new Router(
 			$this->view,
@@ -57,6 +64,7 @@ class Container
 			$this->session,
 			$this->database,
 			$this->auth,
+			$this->storage,
 		);
 	}
 }

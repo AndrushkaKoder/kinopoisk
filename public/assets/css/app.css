@@ -14,7 +14,6 @@ li {
 }
 
 /*======================================================*/
-
 .header {
 
 }
@@ -25,4 +24,27 @@ li {
 
 .header_nav > li > a {
 	font-weight: bold;
+}
+
+.form_login {
+	width: 50%;
+	margin: 0 auto;
+}
+
+@media screen and (max-width: 787px) {
+	.form_login {
+		width: 100%;
+	}
+}
+
+.errors{
+	position: relative;
+	z-index: 999;
+	width: 50%;
+	margin: 0 auto;
+	text-align: center;
+}
+.errors ul {
+	margin: 0;
+	padding: 0;
 }

@@ -13,11 +13,11 @@
 <?php } ?>
 
 
-<form action="/admin/movies/create" method="post">
+<form action="/admin/movies/create" method="post" enctype="multipart/form-data">
 	<label for="title">Новый фильм</label>
 	<input id="title" type="text" name="title" placeholder="Название фильма">
-	<label for="email">Почта</label>
-	<input id="email" type="email" name="email" placeholder="почта">
+	<label for="cover">Обложка фильма</label>
+	<input type="file" name="cover" id="cover">
 	<button type="submit">Добавить</button>
 </form>
 

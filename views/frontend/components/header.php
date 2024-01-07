@@ -9,10 +9,14 @@ $user = $auth->user()
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
-					<a href="/">LOGO</a>
+					<div class="logo">
+						<a href="/">
+							<img src="/assets/icons/logo2.png" alt="<?= SITE_NAME ?>">
+						</a>
+					</div>
 				</div>
-				<div class="col-md-4">
-					<ul class="d-flex justify-content-between header_nav">
+				<div class="col-md-4 d-flex justify-content-center align-items-center">
+					<ul class="nav_list">
 						<li><a href="/">Главная</a></li>
 						<li><a href="/movies">Фильмы</a></li>
 						<li><a href="/info">Информация</a></li>
@@ -20,11 +24,7 @@ $user = $auth->user()
 				</div>
 				<div class="col-md-4 d-flex justify-content-end align-items-center">
 					<?php if ($auth->check()): ?>
-						<span><?= $user->email() ?></span>
-						<form action="/logout" method="post">
-							<input type="hidden" name="user_id" value="<?= $user->id() ?>">
-							<button class="btn btn-success">Выход</button>
-						</form>
+						<a href="/lk" class="btn btn-success">Личный кабинет</a>
 					<?php else: ?>
 						<a href="/login" class="btn btn-dark">Вход/Регистрация</a>
 					<?php endif; ?>
@@ -33,3 +33,4 @@ $user = $auth->user()
 		</div>
 	</div>
 </header>
+<main>

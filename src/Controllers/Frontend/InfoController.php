@@ -8,7 +8,7 @@ class InfoController extends BaseController
 {
 	public function index()
 	{
-		$this->view('frontend.info');
+		$this->view('frontend.pages.info');
 	}
 
 }

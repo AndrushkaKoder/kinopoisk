@@ -54,7 +54,7 @@ class Auth implements interface\AuthInterface
 
 		return !empty($user)
 			?
-			new User($user['id'], $user['user_email'], $user['user_name'], $user['user_password'])
+			new User($user['id'], $user['email'], $user['name'], $user['password'])
 			:
 			null;
 	}
@@ -66,12 +66,12 @@ class Auth implements interface\AuthInterface
 
 	public function username(): string
 	{
-		return $this->config->get('auth.username', 'user_email');
+		return $this->config->get('auth.username', 'email');
 	}
 
 	public function password(): string
 	{
-		return $this->config->get('auth.password', 'user_password');
+		return $this->config->get('auth.password', 'password');
 	}
 
 	public function sessionField(): string

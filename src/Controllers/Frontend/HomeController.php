@@ -8,7 +8,7 @@ class HomeController extends BaseController
 {
 	public function index(): void
 	{
-		$this->view('frontend.home');
+		$this->view('frontend.pages.home');
 	}
 
 }

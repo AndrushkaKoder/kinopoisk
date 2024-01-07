@@ -8,7 +8,7 @@ class IndexController extends BaseController
 {
 	public function index()
 	{
-		$this->view('admin.index.index');
+		$this->view('admin.pages.index.index');
 	}
 
 }

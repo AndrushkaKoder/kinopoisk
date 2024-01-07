@@ -11,7 +11,7 @@ class LoginController extends BaseController
 
 	public function index(): void
 	{
-		$this->view('frontend.LK.login');
+		$this->view('frontend.pages.LK.login');
 	}
 
 	public function login()
@@ -30,7 +30,7 @@ class LoginController extends BaseController
 		$password = $this->request()->input('user_password');
 
 		if($this->auth()->attempt($email, $password)) {
-			$this->redirect('/');
+			$this->redirect('/lk');
 		} else {
 			$this->session()->set('error', [$this->errorMessage]);
 			$this->redirect('/login');

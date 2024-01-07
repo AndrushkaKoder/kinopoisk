@@ -3,7 +3,6 @@
 namespace App\Kernel\Storage;
 
 use App\Kernel\config\interface\ConfigInterface;
-use App\Kernel\Storage\StorageInterface;
 
 class Storage implements StorageInterface
 {

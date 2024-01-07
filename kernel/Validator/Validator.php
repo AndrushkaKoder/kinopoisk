@@ -47,6 +47,8 @@ class Validator implements ValidatorInterface
 			case 'email':
 				if (!filter_var($value, FILTER_VALIDATE_EMAIL)) return "Невалидный E-mail!";
 				break;
+			case 'confirmed':
+				if($value !== $this->data[$key . '_confirmed']) return 'Пароли не совпадают!';
 		}
 		return false;
 	}

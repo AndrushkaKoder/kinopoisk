@@ -8,7 +8,12 @@ class MoviesController extends BaseController
 {
 	public function index()
 	{
-		$this->view('frontend.movies');
+		$this->view('frontend.pages.movies');
+	}
+
+	public function show()
+	{
+		$this->view('frontend.pages.film');
 	}
 
 }

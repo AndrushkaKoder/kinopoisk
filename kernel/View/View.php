@@ -18,7 +18,7 @@ class View implements ViewInterface
 
 	public function page(string $page): void
 	{
-		$filepath = VIEWS . '/pages/' . $this->dotNotation($page) . '.php';
+		$filepath = VIEWS . '/' . $this->dotNotation($page) . '.php';
 
 		if (!file_exists($filepath)) throw new ViewNotFoundException();
 
@@ -28,7 +28,7 @@ class View implements ViewInterface
 
 	public function component(string $compName): void
 	{
-		$componentPath = VIEWS . '/components/' . $this->dotNotation($compName) . '.php';
+		$componentPath = VIEWS . '/' . $this->dotNotation($compName) . '.php';
 
 		if (!file_exists($componentPath)) {
 			echo "component $compName not found!";
@@ -37,7 +37,15 @@ class View implements ViewInterface
 
 		extract($this->defaultData());
 		include_once $componentPath;
+	}
 
+	public function start(string $type = 'frontend'): void
+	{
+		 $this->component("{$type}.components.head");
+	}
+	public function end(string $type = 'frontend'): void
+	{
+		$this->component("{$type}.components.footer");
 	}
 
 	protected function dotNotation($name): string

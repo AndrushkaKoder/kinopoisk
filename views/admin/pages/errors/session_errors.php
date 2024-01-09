@@ -1,9 +1,9 @@
-<?php if ($session->has('user_password')) { ?>
-	<div class="errors">
+<?php if ($session->has('error')): ?>
+	<div class="alert alert-danger errors" role="alert">
 		<ul>
-			<?php foreach ($session->getFlash('title') as $error) { ?>
-				<li><?=$error?></li>
-			<?php } ?>
+			<?php foreach ($session->getFlash('error') as $error): ?>
+				<li><?= $error ?></li>
+			<?php endforeach; ?>
 		</ul>
 	</div>
-<?php } ?>
+<?php endif; ?>

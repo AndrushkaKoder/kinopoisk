@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \App\Kernel\View\ViewInterface $view
+ * @var \App\Kernel\Session\interface\SessionInterface $session
+ */
+?>
 <!doctype html>
 <html lang="<?=LANG?>">
 <head>

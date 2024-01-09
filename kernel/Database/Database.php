@@ -24,13 +24,9 @@ class Database implements DatabaseInterface
 		$dbPassword = $this->config->get('database.password');
 
 		try {
-
 			$this->pdo = new \PDO("mysql:host=$host;dbname=$dbName", $dbUser, $dbPassword);
-
 		} catch (\PDOException $exception) {
-
 			die('Ошибка подключения к Database! ' . $exception->getMessage());
-
 		}
 	}
 
@@ -52,13 +48,14 @@ class Database implements DatabaseInterface
 		return $this->pdo->lastInsertId();
 	}
 
+
 	public function first(string $table, array $conditions): ?array
 	{
 		$where = '';
 
 		if (count($conditions)) {
-			$where = "WHERE " . implode(' AND ', array_map(function ($item){
-				return "$item = :$item";
+			$where = "WHERE " . implode(' AND ', array_map(function ($item) {
+					return "$item = :$item";
 				}, array_keys($conditions)));
 		}
 
@@ -70,8 +67,26 @@ class Database implements DatabaseInterface
 		$first = $statement->fetch(\PDO::FETCH_ASSOC);
 
 		return !$first ? null : $first;
-
 	}
 
 
+	public function select(string $table, array $fields = [], array $conditions = []): bool|array
+	{
+		$dbFields = '*';
+		$where = '';
+
+		if ($fields) $dbFields = implode(', ', $fields);
+
+		if ($conditions) $where = "WHERE " . implode(' AND ', array_map(function ($item) {
+					return "$item = :$item";
+				}, array_keys($conditions)));
+
+		$query = "SELECT {$dbFields} FROM {$table} {$where}";
+
+
+		$statement = $this->pdo->prepare($query);
+		$statement->execute($conditions);
+
+		return $statement->fetchAll(\PDO::FETCH_ASSOC);
+	}
 }

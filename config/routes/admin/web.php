@@ -1,9 +1,6 @@
 <?php
 
 use App\Kernel\Router\Route;
-use App\Middleware\AdminMiddleware;
-use App\Middleware\AuthMiddleware;
-use App\Middleware\RedirectIfAuthAdminMiddleware;
 
 return [
 	Route::get('/admin', [\App\Controllers\Admin\IndexController::class, 'index']),
@@ -13,4 +10,13 @@ return [
 	Route::get('/admin', [\App\Controllers\Admin\IndexController::class, 'index']),
 	Route::get('/admin/movies/add', [\App\Controllers\Admin\MoviesController::class, 'add']),
 	Route::post('/admin/movies/create', [\App\Controllers\Admin\MoviesController::class, 'create']),
+
+	Route::get('/admin/movies', [\App\Controllers\Admin\MoviesController::class, 'index']),
+
+	Route::get('/admin/categories', [\App\Controllers\Admin\CategoriesController::class, 'index']),
+	Route::get('/admin/categories/add', [\App\Controllers\Admin\CategoriesController::class, 'add']),
+	Route::post('/admin/categories/create', [\App\Controllers\Admin\CategoriesController::class, 'create']),
+
+	Route::get('/admin/users', [\App\Controllers\Admin\UsersController::class, 'index']),
+	Route::get('/admin/info', [\App\Controllers\Admin\InfoController::class, 'index']),
 ];

@@ -8,6 +8,13 @@ use App\Models\Category;
 class CategoryService
 {
 	private DatabaseInterface $database;
+	private CategoryService $service;
+
+	protected array $fillable = [
+		'id',
+		'title',
+		'created_at'
+	];
 
 	public function __construct(DatabaseInterface $database)
 	{
@@ -38,11 +45,28 @@ class CategoryService
 		return null;
 	}
 
+	public function store(array $fields): void
+	{
+		$this->database->insert('categories', $fields);
+	}
+
+	public function update(int $id, array $fields)
+	{
+		$this->database->update('categories', $id, $fields);
+	}
+
 	private function getResponse(array $data): array
 	{
 		return array_map(function ($item) {
 			return new Category($item['id'], $item['title'], $item['created_at']);
 		}, $data);
+	}
+
+	public function delete(int $id): void
+	{
+		$this->database->delete('categories', [
+			'id' => $id
+		]);
 	}
 
 }

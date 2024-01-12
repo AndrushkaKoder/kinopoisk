@@ -16,17 +16,17 @@ class View implements ViewInterface
 	{
 	}
 
-	public function page(string $page): void
+	public function page(string $page, array $data = []): void
 	{
 		$filepath = VIEWS . '/' . $this->dotNotation($page) . '.php';
 
 		if (!file_exists($filepath)) throw new ViewNotFoundException();
 
-		extract($this->defaultData());
+		extract(array_merge($this->defaultData(), $data));
 		include_once $filepath;
 	}
 
-	public function component(string $compName): void
+	public function component(string $compName, array $data = []): void
 	{
 		$componentPath = VIEWS . '/' . $this->dotNotation($compName) . '.php';
 
@@ -35,8 +35,8 @@ class View implements ViewInterface
 			return;
 		}
 
-		extract($this->defaultData());
-		include_once $componentPath;
+		extract(array_merge($this->defaultData(), $data));
+		include $componentPath;
 	}
 
 	public function start(string $type = 'frontend'): void

@@ -11,4 +11,8 @@ interface DatabaseInterface
 	public function first(string $table, array $conditions): ?array;
 
 	public function select(string $table, array $fields = [], array $conditions = []): bool|array;
+
+	public function delete(string $table, array $conditions = []): void;
+
+	public function update(string $table, int $id, array $conditions = []): void;
 }

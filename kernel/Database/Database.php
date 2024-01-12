@@ -65,7 +65,6 @@ class Database implements DatabaseInterface
 		$statement->execute($conditions);
 
 		$first = $statement->fetch(\PDO::FETCH_ASSOC);
-
 		return !$first ? null : $first;
 	}
 
@@ -78,15 +77,43 @@ class Database implements DatabaseInterface
 		if ($fields) $dbFields = implode(', ', $fields);
 
 		if ($conditions) $where = "WHERE " . implode(' AND ', array_map(function ($item) {
-					return "$item = :$item";
-				}, array_keys($conditions)));
+				return "$item = :$item";
+			}, array_keys($conditions)));
 
 		$query = "SELECT {$dbFields} FROM {$table} {$where}";
-
-
 		$statement = $this->pdo->prepare($query);
 		$statement->execute($conditions);
 
 		return $statement->fetchAll(\PDO::FETCH_ASSOC);
+	}
+
+	public function delete(string $table, array $conditions = []): void
+	{
+		$where = '';
+
+		if ($conditions) {
+			$where = "WHERE " . implode(' AND ', array_map(function ($item) {
+					return "$item = :$item";
+				}, array_keys($conditions)));
+		}
+
+		$query = "DELETE FROM {$table} {$where}";
+		$statement = $this->pdo->prepare($query);
+		$statement->execute($conditions);
+	}
+
+	public function update(string $table, int $id, array $conditions = []): void
+	{
+		$set = '';
+		if ($conditions) {
+			$set = "SET " . implode(' AND ', array_map(function ($item) {
+					return "$item = :$item";
+				}, array_keys($conditions)));
+		}
+
+		$query = "UPDATE {$table} {$set} WHERE id = {$id}";
+
+		$statement = $this->pdo->prepare($query);
+		$statement->execute($conditions);
 	}
 }

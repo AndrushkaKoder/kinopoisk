@@ -41,9 +41,9 @@ abstract class BaseController
 		$this->session = $session;
 	}
 
-	public function view(string $viewName): void
+	public function view(string $viewName, array $data = []): void
 	{
-		$this->view->page($viewName);
+		$this->view->page($viewName, $data);
 	}
 
 	public function request(): RequestInterface

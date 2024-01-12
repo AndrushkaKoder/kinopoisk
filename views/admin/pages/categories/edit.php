@@ -1,6 +1,7 @@
 <?php
 /**
  * @var \App\Kernel\View\ViewInterface $view
+ * @var \App\Models\Category $category
  */
 ?>
 
@@ -19,13 +20,14 @@
 
 
 	<div class="container">
-		<h2>Добавить категорию</h2>
+		<h2>Изменить категорию <?= $category->title() ?></h2>
 		<div class="row">
 			<div class="col-12">
-				<form action="/admin/categories/create" method="post">
+				<form action="/admin/categories/update" method="post">
+					<input type="hidden" name="id" value="<?= $category->id() ?>">
 					<label for="title" class="form-label">Название категории</label>
-					<input type="text" name="title" id="title" class="form-control">
-					<button type="submit" class="btn btn-default mt-3">Добавить</button>
+					<input type="text" name="title" id="title" class="form-control" value="<?= $category->title() ?>">
+					<button type="submit" class="btn btn-default mt-3">Сохранить</button>
 				</form>
 			</div>
 		</div>
